@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stack_finance_assignment/app.dart';
+import 'package:stack_finance_assignment/cubits/add_weight_cubit/add_weight_cubit.dart';
 import 'package:stack_finance_assignment/cubits/login_cubit/login_cubit.dart';
 import 'package:stack_finance_assignment/cubits/user_cubit/user_cubit.dart';
 import 'package:stack_finance_assignment/repositories/login_repository.dart';
+import 'package:stack_finance_assignment/repositories/weight_repository.dart';
 
 class BlocProviderScreen extends StatefulWidget {
   @override
@@ -23,6 +25,7 @@ class _BlocProviderScreenState extends State<BlocProviderScreen> {
           BlocProvider.of<UserCubit>(context),
         ),
       ),
+      BlocProvider(create: (context) => AddWeightCubit(WeightRepository())),
       // BlocProvider(
       //   create: (context) => NavigatorCubit(),
       // ),

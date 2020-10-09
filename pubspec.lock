@@ -300,6 +300,18 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.6"
+  flutter_date_pickers:
+    dependency: "direct main"
+    description:
+      name: flutter_date_pickers
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.7"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -395,7 +407,7 @@ packages:
     source: hosted
     version: "0.6.2"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
@@ -588,6 +600,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sleek_circular_slider:
+    dependency: "direct main"
+    description:
+      name: sleek_circular_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   source_gen:
     dependency: transitive
     description:

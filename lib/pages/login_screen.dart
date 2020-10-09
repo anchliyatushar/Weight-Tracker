@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:stack_finance_assignment/cubits/login_cubit/login_cubit.dart';
+import 'package:stack_finance_assignment/utils/strings.dart';
 import 'package:stack_finance_assignment/utils/util_functions.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: my_primary_color,
         body: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) async {
             if (state is LoginError) {
@@ -71,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: Card(
+            color: my_primary_light_color,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             clipBehavior: Clip.antiAlias,
@@ -79,12 +82,15 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Container(
                   padding: EdgeInsets.all(10),
-                  color: Colors.grey[100],
+                  color: my_primary_light_color,
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
                   child: Text(
                     "User Login",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
                   ),
                 ),
                 Padding(
@@ -101,10 +107,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             TextFormField(
                               cursorHeight: 22,
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                               initialValue: _emailId,
+                              cursorColor: Colors.white,
                               decoration: InputDecoration(
                                 labelText: "Email",
+                                focusColor: Colors.white,
+                                fillColor: Colors.white,
+                                hintStyle: TextStyle(color: Colors.white),
+                                labelStyle: TextStyle(color: Colors.white70),
                                 contentPadding:
                                     EdgeInsets.fromLTRB(0, 10, 0, 6),
                               ),
@@ -128,17 +142,31 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             TextFormField(
                               cursorHeight: 22,
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                               initialValue: _password,
                               focusNode: _passwordNode,
+                              cursorColor: Colors.white,
                               decoration: InputDecoration(
+                                  focusColor: Colors.white,
+                                  fillColor: Colors.white,
+                                  hintStyle: TextStyle(color: Colors.white),
+                                  labelStyle: TextStyle(color: Colors.white70),
                                   contentPadding:
                                       EdgeInsets.fromLTRB(0, 10, 0, 6),
                                   labelText: "Password",
                                   suffixIcon: IconButton(
                                     icon: _isPasswordObscure
-                                        ? Icon(Icons.visibility)
-                                        : Icon(Icons.visibility_off),
+                                        ? Icon(
+                                            Icons.visibility,
+                                            color: Colors.white,
+                                          )
+                                        : Icon(
+                                            Icons.visibility_off,
+                                            color: Colors.white,
+                                          ),
                                     onPressed: () {
                                       setState(() {
                                         _isPasswordObscure =
@@ -168,6 +196,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
                       if (state is LoginProcessing) ...{
                         CircularProgressIndicator()
                       } else ...{
@@ -189,25 +220,15 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () => _loginUser(context, _emailId, _password),
       child: Container(
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey,
-              offset: Offset(0.0, 1.0), //(x,y)
-              blurRadius: 2.0,
-            ),
-          ],
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Colors.yellow[600], Colors.red]),
+          color: my_accent_color,
         ),
         width: MediaQuery.of(context).size.width,
         height: 40,
         child: Center(
             child: Text(
           "LOGIN",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold),
         )),
       ),
     );
