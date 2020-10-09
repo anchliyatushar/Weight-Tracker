@@ -10,7 +10,7 @@ class UserCubit extends Cubit<UserState> {
     emit(const UserNotLoggedIn());
   }
 
-  emitUserLoggedIn() {
+  emitUserLoggedIn(String sellerId) {
     emit(const UserLoggedIn());
   }
 }

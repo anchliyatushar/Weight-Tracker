@@ -15,12 +15,13 @@ class _BlocProviderScreenState extends State<BlocProviderScreen> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(
-        create: (context) => LoginCubit(
-          LoginRepository(),
-        ),
+        create: (context) => UserCubit(),
       ),
       BlocProvider(
-        create: (context) => UserCubit(),
+        create: (context) => LoginCubit(
+          LoginRepository(),
+          BlocProvider.of<UserCubit>(context),
+        ),
       ),
       // BlocProvider(
       //   create: (context) => NavigatorCubit(),

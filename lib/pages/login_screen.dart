@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:stack_finance_assignment/cubits/login_cubit/login_cubit.dart';
+import 'package:stack_finance_assignment/utils/util_functions.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -10,23 +11,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String _sellerId, _password;
+  String _emailId, _password;
   bool _isPasswordObscure;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  FocusNode _sellerIdNode, _passwordNode;
+  FocusNode emailIdNode, _passwordNode;
 
   @override
   void initState() {
     super.initState();
     _isPasswordObscure = true;
-    _sellerIdNode = FocusNode();
+    emailIdNode = FocusNode();
     _passwordNode = FocusNode();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _sellerIdNode?.dispose();
+    emailIdNode?.dispose();
     _passwordNode?.dispose();
   }
 
@@ -82,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
                   child: Text(
-                    "Seller Login",
+                    "User Login",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                   ),
                 ),
@@ -101,28 +102,28 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextFormField(
                               cursorHeight: 22,
                               style: TextStyle(fontSize: 18),
-                              initialValue: _sellerId,
+                              initialValue: _emailId,
                               decoration: InputDecoration(
-                                labelText: "Seller's Id",
+                                labelText: "Email",
                                 contentPadding:
                                     EdgeInsets.fromLTRB(0, 10, 0, 6),
                               ),
                               keyboardType: TextInputType.emailAddress,
                               onFieldSubmitted: (val) =>
                                   _passwordNode.requestFocus(),
-                              focusNode: _sellerIdNode,
+                              focusNode: emailIdNode,
                               textInputAction: TextInputAction.next,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: (val) {
-                                if (val.trim().isEmpty) {
-                                  return "Please Enter a valid Seller's Id";
+                                if (!validateEmail(val)) {
+                                  return "Please Enter a valid Email Id";
                                 }
                                 return null;
                               },
-                              onChanged: (sellerId) {
-                                _sellerId = sellerId;
-                                print(_sellerId);
+                              onChanged: (emailId) {
+                                _emailId = emailId;
+                                print(emailId);
                               },
                             ),
                             TextFormField(
@@ -157,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return null;
                               },
                               onFieldSubmitted: (val) {
-                                _loginUser(context, _sellerId, _password);
+                                _loginUser(context, _emailId, _password);
                               },
                               onChanged: (password) {
                                 _password = password;
@@ -167,16 +168,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: FlatButton(
-                          onPressed: () {
-                            _emitLoginInitial();
-                          },
-                          child: Text("Login →",
-                              style: TextStyle(color: Colors.blue)),
-                        ),
-                      ),
+                      if (state is LoginProcessing) ...{
+                        CircularProgressIndicator()
+                      } else ...{
+                        _buildLoginButton()
+                      }
                     ],
                   ),
                 ),
@@ -188,13 +184,37 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _loginUser(BuildContext context, String sellerId, String password) {
-    final loginCubit = context.bloc<LoginCubit>();
-    loginCubit.loginUser(sellerId, password);
+  Widget _buildLoginButton() {
+    return InkWell(
+      onTap: () => _loginUser(context, _emailId, _password),
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(0.0, 1.0), //(x,y)
+              blurRadius: 2.0,
+            ),
+          ],
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Colors.yellow[600], Colors.red]),
+        ),
+        width: MediaQuery.of(context).size.width,
+        height: 40,
+        child: Center(
+            child: Text(
+          "LOGIN",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        )),
+      ),
+    );
   }
 
-  void _emitLoginInitial() {
+  void _loginUser(BuildContext context, String emailId, String password) {
     final loginCubit = context.bloc<LoginCubit>();
-    loginCubit.emitLoginInitial();
+    loginCubit.loginUser(emailId, password);
   }
 }
