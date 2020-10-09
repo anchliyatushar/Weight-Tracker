@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374520807953",
+    "firebase_url": "https://stackfinance-ca3de.firebaseio.com",
+    "project_id": "stackfinance-ca3de",
+    "storage_bucket": "stackfinance-ca3de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374520807953:android:41d08742da3b4e80f2a7b0",
+        "android_client_info": {
+          "package_name": "com.example.stack_finance_assignment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374520807953-jof947lupg6eivqfbrhtqoa0c7vesa02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stack_finance_assignment",
+            "certificate_hash": "98d17b02ded76e16142fd15c4d8b429715427a49"
+          }
+        },
+        {
+          "client_id": "374520807953-6jcg6t094bq1hf2rvmm4a5st8d8u3ns1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_VyhLRTT6Ncy77UXMJNsPDeMTMuz-zwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374520807953-6jcg6t094bq1hf2rvmm4a5st8d8u3ns1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
