@@ -1,4 +1,4 @@
-# stack_finance_assignment
+# Weight Tracker Application
 
 A new Flutter project.
 
