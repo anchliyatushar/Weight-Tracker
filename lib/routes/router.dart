@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route_annotations.dart';
 import 'package:stack_finance_assignment/pages/add_weight_screen.dart';
+import 'package:stack_finance_assignment/pages/edit_weight_screen.dart';
 import 'package:stack_finance_assignment/pages/stack_finance.dart';
 
 // use this command to generate routes only - flutter packages pub run build_runner
@@ -11,4 +12,6 @@ class $Router {
   StackFinance stackFinance;
   @MaterialRoute(fullscreenDialog: true)
   AddWeightScreen addWeightScreen;
+  @MaterialRoute(fullscreenDialog: true)
+  EditWeightScreen editWeightScreen;
 }
