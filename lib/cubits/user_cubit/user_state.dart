@@ -8,9 +8,11 @@ abstract class UserState extends Equatable {
 }
 
 class UserNotLoggedIn extends UserState {
-  const UserNotLoggedIn();
+  final UserModel userModel;
+  const UserNotLoggedIn(this.userModel);
 }
 
 class UserLoggedIn extends UserState {
-  const UserLoggedIn();
+  final UserModel userModel;
+  const UserLoggedIn(this.userModel);
 }
