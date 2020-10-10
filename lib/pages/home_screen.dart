@@ -234,18 +234,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       )
                     },
-                    if (listWeightModel[index].weight ==
-                        listWeightModel[index + 1].weight) ...{
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                              "${listWeightModel[index + 1].weight - listWeightModel[index].weight} Kgs",
-                              style: TextStyle(
-                                  color: Colors.white54, fontSize: 22)),
-                        ],
-                      )
-                    }
                   }
                 ],
               ),
