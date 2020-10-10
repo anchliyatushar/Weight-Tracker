@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //images
 const String userAvatar = "assets/images/avatar.png";
+const String logo = "assets/images/logo.png";
 
 //fonts
 const String my_font = 'GoogleSans';
