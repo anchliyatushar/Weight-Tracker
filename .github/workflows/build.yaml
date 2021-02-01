@@ -1,0 +1,15 @@
+# The name of our workflow
+name: Build
+# Trigger on every pull request
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Build apk
+      - run: flutter doctor
+      - run: flutter pub get
+      - run: flutter build apk --release
